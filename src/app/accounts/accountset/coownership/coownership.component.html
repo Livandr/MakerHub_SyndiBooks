@@ -1,0 +1,37 @@
+<h3 style="background-color: ghostwhite; color: navy; text-align: center;">Plan comptable de la copropriété</h3>
+<table class="table table-hover" style="background-color: ghostwhite; border: 2px solid navy; width: auto; ">
+    <thead style="border: 1px navy;">
+        <tr style="border: 1px navy;">
+            <th>Numéro de compte</th>
+            <th>Intitulé du compte</th>
+            <th>Retirer</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of accountsCooList" style="border: 1px navy;">
+            <td>{{ item.accountNumber }}</td>
+            <td>{{ item.accountTitle }}</td>
+            <td>
+                <button class="btn btn-outline-primary" (click)="removeAccount(item)">-</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<button class="btn btn-primary"> Valider la liste </button>
+<div class="modal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>

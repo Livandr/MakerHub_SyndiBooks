@@ -1,0 +1,198 @@
+<h2 style="text-align: center; background-color: ghostwhite; color: navy;">Gestion Fournisseurs</h2>
+<div id="new_supplier">
+    <p>
+        <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample"
+            aria-expanded="false" aria-controls="collapseWidthExample">
+            Créer un fournisseur
+        </button>
+    </p>
+    <div style="min-height: 120px;">
+        <div class="collapse collapse-horizontal" id="collapseWidthExample">
+            <div class="card card-body" style="width: 1300px;">
+
+                <button type="button" class="btn-close" aria-label="Close" style="margin-left: auto;"></button>
+
+                <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <div class="col-md-3">
+                        <label for="validationDefault01" class="form-label">BCE</label>
+                        <input type="text" class="form-control" id="validationDefault01" formControlName="bceNumber"
+                            placeholder="BCE">
+                    </div>
+                    <div class="col-md-8">
+                        <label for="validationDefault02" class="form-label">Nom</label>
+                        <input type="text" class="form-control" id="validationDefault02" formControlName="supplierName"
+                            placeholder="Nom ">
+                        <p *ngIf="hasErrorAndTouched(form, 'supplierName', 'required')">Ce champ est requis</p>
+                    </div>
+
+                    <h5>Coordonnées</h5>
+                    <div class="col-md-4">
+                        <label for="validationDefaultUsername" class="form-label">Téléphone</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="inputGroupPrepend2">
+                                <img src="/assets/telephone.svg" alt="">
+                            </span>
+                            <input type="text" class="form-control" id="validationDefaultUsername"
+                                aria-describedby="inputGroupPrepend2" formControlName="phone">
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="validationDefaultUsername" class="form-label">Mail</label>
+                        <div class="input-group">
+                            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                            <input type="text" class="form-control" id="validationDefaultUsername"
+                                aria-describedby="inputGroupPrepend2" formControlName="email">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <label for="validationDefault03" class="form-label">Rue</label>
+                        <input type="text" class="form-control" formControlName="streetName">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="validationDefault03" class="form-label">Numéro</label>
+                        <input type="text" class="form-control" formControlName="streetNumber">
+                    </div>
+                    <div class="col-md-1">
+                        <label for="validationDefault03" class="form-label">Boîte</label>
+                        <input type="text" class="form-control" formControlName="streetBoxNumber">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="validationDefault05" class="form-label">Code postal</label>
+                        <input type="text" class="form-control" formControlName="postalCode">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="validationDefault03" class="form-label">Commune</label>
+                        <input type="text" class="form-control" formControlName="city">
+                    </div>
+                    <h5>Coordonnées bancaires</h5>
+                    <div class="col-md-4">
+                        <label for="validationDefault05" class="form-label">IBAN</label>
+                        <input type="text" class="form-control" formControlName="bankDetailIBAN">
+                    </div>
+                    <div class="col-md-2">
+                        <label for="validationDefault03" class="form-label">BIC</label>
+                        <input type="text" class="form-control" formControlName="bankDetailBIC">
+                    </div>
+                    <div class="col-12">
+                        <button class="btn btn-primary">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="container" style="margin-top: 0.5%;">
+        <div class="row" style="background-color: ghostwhite;">
+            <div class="col-md-offset-1 col-md-20">
+                <div class="panel">
+                    <div class="panel-heading">
+                        <div class="row">
+                            <div class="col-sm-12 col-xs-12">
+
+                                <form class="form-horizontal pull-right">
+                                    <div class="form-group">
+                                        <label>Show : </label>
+                                        <select class="form-control" style="width: 60px;">
+                                            <option>5</option>
+                                            <option>10</option>
+                                            <option>15</option>
+                                            <option>20</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <!-- <th scope="col">Modifier</th> -->
+                                    <th scope="col">Supprimer</th>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nom</th>
+                                    <th scope="col">Adresse</th>
+                                    <th scope="col">Téléphone</th>
+                                    <th scope="col">Mail</th>
+                                    <th scope="col">Coordonnées bancaires</th>
+                                    <th scope="col"></th>
+                                </tr>
+                            </thead>
+                            <tbody *ngIf="suppliers">
+                                <tr *ngFor="let supplier of suppliers">
+                                    <!-- <td>
+                                        <button type="submit" class="btn btn-warning" routerLink="/supplier/update"
+                                            routerLinkActive="active">
+                                            <img src="/assets/pen-fill.svg" alt="">
+
+                                        </button>
+                                    </td> -->
+
+                                    <td>
+                                        <button type="submit" class="btn btn-warning"
+                                            (click)="deleteSupplier(supplier)">
+                                            <img src="/assets/trash.svg" alt="">
+                                        </button>
+                                    </td>
+
+                                    <td>
+                                        <strong style="font-size: larger;">
+
+                                            {{supplier.id}}
+                                        </strong>
+                                    </td>
+
+                                    <td>
+                                        <strong>
+
+                                            <a [routerLink]="'/supplier/details/'+supplier.id" class="link-dark">
+
+                                                {{supplier.supplierName | uppercase}}
+                                            </a>
+                                        </strong>
+                                    </td>
+
+                                    <td>{{supplier.streetName}} {{supplier.streetNumber}} {{supplier.streetBoxNumber}}
+                                        - {{supplier.postalCode}} {{supplier.city}}
+
+                                    <td>{{supplier.phone}}</td>
+
+                                    <td>{{supplier.email}}</td>
+
+                                    <td> {{supplier.bankDetailBIC}}</td>
+
+                                    <td>{{supplier.bankDetailIBAN}}</td>
+
+                                    <!-- {{supplier | json }} -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="panel-footer">
+                        <div class="row">
+                            <div class="col-sm-6 col-xs-6">showing <b>5</b> out of <b>25</b> entries</div>
+                            <div class="col-sm-6 col-xs-6">
+                                <ul class="pagination hidden-xs pull-right">
+                                    <li><a href="#">«</a></li>
+                                    <li class="active"><a href="#">1</a></li>
+                                    <li><a href="#">2</a></li>
+                                    <li><a href="#">3</a></li>
+                                    <li><a href="#">4</a></li>
+                                    <li><a href="#">5</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                                <ul class="pagination visible-xs pull-right">
+                                    <li><a href="#">«</a></li>
+                                    <li><a href="#">»</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div>
+    <router-outlet></router-outlet>
+</div> -->

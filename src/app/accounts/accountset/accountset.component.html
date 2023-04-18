@@ -1,0 +1,12 @@
+<div class="container">
+
+    <div class="row">
+        <div class="col-6">
+            <app-accounting [accountsCooList]="coowershipAccounts" [generalList]="accounts"
+                (addedAccounts)="addToCoownershipList($event)"></app-accounting>
+        </div>
+        <div class="col-6">
+            <app-coownership [accountsCooList]="coowershipAccounts"></app-coownership>
+        </div>
+    </div>
+</div>

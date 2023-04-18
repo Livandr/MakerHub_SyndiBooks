@@ -1,0 +1,180 @@
+<p>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWidthExample"
+        aria-expanded="false" aria-controls="collapseWidthExample">
+        Créer une copropriété
+    </button>
+</p>
+<div style="min-height: 120px;">
+    <div class="collapse collapse-horizontal" id="collapseWidthExample">
+        <div class="card card-body" style="width: 900px;">
+            <button type="button" class="btn-close" aria-label="Close" style="margin-left: auto;"></button>
+
+            <form class="row g-3" [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="col-md-3">
+                    <label for="validationDefault01" class="form-label">BCE</label>
+                    <input type="text" class="form-control" id="validationDefault01" formControlName="bce"
+                        placeholder="BCE">
+                </div>
+                <div class="col-md-8">
+                    <label for="validationDefault02" class="form-label">Nom</label>
+                    <input type="text" class="form-control" id="validationDefault02" formControlName="coOName"
+                        placeholder="Nom ">
+                    <p *ngIf="hasErrorAndTouched(form, 'supplierName', 'required')">Ce champ est requis</p>
+                </div>
+
+                <h5>Coordonnées</h5>
+                <!-- <div class="col-md-4">
+                    <label for="validationDefaultUsername" class="form-label">Téléphone</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend2">
+                            <img src="/assets/telephone.svg" alt="">
+                        </span>
+                        <input type="text" class="form-control" id="validationDefaultUsername"
+                            aria-describedby="inputGroupPrepend2" formControlName="phone">
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <label for="validationDefaultUsername" class="form-label">Mail</label>
+                    <div class="input-group">
+                        <span class="input-group-text" id="inputGroupPrepend2">@</span>
+                        <input type="text" class="form-control" id="validationDefaultUsername"
+                            aria-describedby="inputGroupPrepend2" formControlName="email">
+                    </div>
+                </div> -->
+                <div class="col-md-6">
+                    <label for="validationDefault03" class="form-label">Rue</label>
+                    <input type="text" class="form-control" formControlName="coOStreetName">
+                </div>
+                <div class="col-md-1">
+                    <label for="validationDefault03" class="form-label">Numéro</label>
+                    <input type="text" class="form-control" formControlName="coOStreetName">
+                </div>
+                <div class="col-md-1">
+                    <label for="validationDefault03" class="form-label">Boite</label>
+                    <input type="text" class="form-control" formControlName="coOStreetNumber">
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault05" class="form-label">Code postal</label>
+                    <input type="text" class="form-control" formControlName="coOPostalCode">
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault03" class="form-label">Commune</label>
+                    <input type="text" class="form-control" formControlName="coOCity">
+                </div>
+                <h5>Coordonnées bancaires</h5>
+                <div class="col-md-4">
+                    <label for="validationDefault05" class="form-label">IBAN</label>
+                    <input type="text" class="form-control" formControlName="bankDetailIBAN">
+                </div>
+                <div class="col-md-2">
+                    <label for="validationDefault03" class="form-label">BIC</label>
+                    <input type="text" class="form-control" formControlName="bankDetailBIC">
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-primary">Soumettre</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="background-color: ghostwhite;">
+    <div class="row">
+        <div class="col-md-offset-1 col-md-20">
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-sm-12 col-xs-10">
+
+                            <form class="form-horizontal pull-right">
+                                <div class="form-group">
+                                    <label>Show : </label>
+                                    <select class="form-control" style="width: 60px;">
+                                        <option>5</option>
+                                        <option>10</option>
+                                        <option>15</option>
+                                        <option>20</option>
+                                    </select>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-body table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <!-- <th scope="col">Modifier</th> -->
+                                <th scope="col">Supprimer</th>
+                                <th scope="col">#</th>
+                                <th scope="col">N° BCE</th>
+                                <th scope="col">ACP</th>
+                                <th scope="col">Adresse</th>
+                                <!-- <th scope="col">Coordonnées bancaires</th>
+                                <th scope="col"></th> -->
+                            </tr>
+                        </thead>
+                        <tbody *ngIf="coownerships">
+                            <tr *ngFor="let coownership of coownerships">
+                                <!-- <td>
+                                    <button type="submit" class="btn btn-warning" routerLinkActive="active">
+                                        <img src="/assets/pen-fill.svg" alt="">
+
+                                    </button>
+                                </td> -->
+
+                                <td><button type="submit" class="btn btn-warning">
+                                        <img src="/assets/trash-fill.svg" alt="">
+                                        <a [routerLink]="['/co-ownership/list']"></a>
+                                    </button>
+                                </td>
+
+                                <td>{{coownership.id}}</td>
+
+                                <td>{{coownership.bce}}</td>
+
+                                <td>
+                                    <a routerLink="/customer/details" routerLinkActive="active">
+
+                                        {{coownership.coOName | uppercase}}
+                                    </a>
+                                </td>
+
+                                <td>{{coownership.coOStreetName}} {{coownership.coOStreetNumber}}
+                                    - {{coownership.coOPostalCode}}
+                                    {{coownership.coOCity}}
+
+                                    <!-- 
+                                <td> {{coownership.bankDetailIBAN}}</td>
+
+                                <td>{{coownership.bankDetailBIC}}</td> -->
+
+                                    <!-- {{coownership | json }} -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-sm-6 col-xs-6">showing <b>5</b> out of <b>25</b> entries</div>
+                        <div class="col-sm-6 col-xs-6">
+                            <ul class="pagination hidden-xs pull-right">
+                                <li><a href="#">«</a></li>
+                                <li class="active"><a href="#">1</a></li>
+                                <li><a href="#">2</a></li>
+                                <li><a href="#">3</a></li>
+                                <li><a href="#">4</a></li>
+                                <li><a href="#">5</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>
+                            <ul class="pagination visible-xs pull-right">
+                                <li><a href="#">«</a></li>
+                                <li><a href="#">»</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
