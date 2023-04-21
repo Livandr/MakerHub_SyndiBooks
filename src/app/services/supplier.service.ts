@@ -11,7 +11,7 @@ export class SupplierService {
 
     private SUPPLIER_URL = "http://localhost:8080/supplier/list";
     private _supplierChanged = new BehaviorSubject<undefined>(undefined);
-    private apiURL = 'http://localhost:8080/supplier';
+    private apiURL = 'http://localhost:8080/supplier/details';
 
     constructor(private readonly _http: HttpClient) { }
 
@@ -26,8 +26,8 @@ export class SupplierService {
 
     }
 
-    getOne(supplierId: number): Observable<Supplier> {
-        return this._http.get<Supplier>(`${this.apiURL}/details/${supplierId}`);
+    getOne(id: number): Observable<Supplier> {
+        return this._http.get<Supplier>(`${this.apiURL}/${id}`);
     }
 
     create(form: SupplierForm): Observable<never> {
@@ -39,9 +39,9 @@ export class SupplierService {
 
 
 
-    update(supplierId: number, data: any): Observable<Supplier> {
-        return this._http.put<Supplier>(`${this.apiURL}/${supplierId}`, data);
-    }
+    // update(supplierId: number, data: any): Observable<Supplier> {
+    //     return this._http.put<Supplier>(`${this.apiURL}/${supplierId}`, data);
+    // }
 
 
     delete(supplier: Supplier): Observable<any> {

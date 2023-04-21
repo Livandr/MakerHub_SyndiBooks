@@ -8,11 +8,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { SupplierService } from 'src/app/services/supplier.service';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SupplierContainerComponent } from './supplier-container/supplier-container.component';
 
 @NgModule({
   declarations: [
     SupplierComponent,
-    SupplierDetailsComponent
+    SupplierDetailsComponent,
+    SupplierContainerComponent
   ],
   imports: [
     CommonModule,

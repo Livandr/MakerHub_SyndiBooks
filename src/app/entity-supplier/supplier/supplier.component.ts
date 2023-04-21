@@ -32,22 +32,11 @@ export class SupplierComponent implements OnInit {
 
   //INITIALISATION
   ngOnInit(): void {
-    const supplierID = this._activatedRouter.snapshot.params['id'];
 
     this.isLoading = true;
 
     //souscription à l'observable pour être notifié des nouvelles valeurs et des nouvelles erreurs
     this.supplierSub = this._supplierService.$supplierChanged.subscribe(() => this.loadSuppliers());
-
-    this._supplierService.getOne(supplierID).subscribe({
-      next: (supplier) => {
-        this.supplier = supplier;
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this._router.navigate(['/supplier']);
-      }
-    })
 
   }
 

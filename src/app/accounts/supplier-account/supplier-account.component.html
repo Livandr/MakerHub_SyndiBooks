@@ -1,0 +1,82 @@
+<h1>Comptes fournisseurs</h1>
+
+<div *ngIf="loading" class="load">
+    <p>....Loading...</p>
+    <div class="spinner-grow" style="width: 10rem; height: 10rem;" role="status">
+        <span class="visually-hidden">Loading...</span>
+    </div>
+</div>
+
+<select class="form-select" aria-label="period" style="width: auto; margin-left: 15%;">
+    <optgroup>
+        <option value="">Période du 01/04/2023 au 31/03/2024</option>
+        <option selected>Période du 01/04/2022 au 31/03/2023</option>
+        <option value="">Période du 01/04/2021 au 31/03/2022</option>
+        <option value="">Période du 01/04/2020 au 31/03/2021</option>
+    </optgroup>
+</select>
+<div *ngIf="!loading">
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Numéro de compte</th>
+                <th scope="col">Libellé</th>
+                <th scope="col">Débit</th>
+                <th scope="col">Crédit</th>
+                <th scope="col">Solde</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let account of supplierAccounts">
+                <td>
+                    <!-- <a [routerLink]="'/account/details/'+account.accountId">{{account.accountNumber}}</a> -->
+                    {{account.accountNumber}}
+                </td>
+                <td class="accounttitle">{{ account.accountTitle | uppercase }}</td>
+                <td class="amount " style="width: 150px;">{{ account.debitBalance | number: '1.2-2' }} EUR </td>
+                <td class="amount " style="width: 150px;">{{ account.creditBalance | number: '1.2-2' }} EUR </td>
+                <td class="amount" style="width: 150px;">{{ account.solde | number: '1.2-2'}} EUR </td>
+            </tr>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>Total</th>
+                <th>Total</th>
+                <th>Solde</th>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Totaux</td>
+                <th>
+                    <b>{{ totalDebitAmounts| number: '1.2-2' }} EUR</b>
+                </th>
+                <th>
+                    <b>{{ totalCreditAmounts | number: '1.2-2'}} EUR </b>
+                </th>
+                <th>
+                    <b>{{ totalSold | number: '1.2-2'}} EUR</b>
+                </th>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <div *ngIf="!loading">
+    <table class=" table ">
+        <tbody>
+
+            <tr>
+                <td>---------------</td>
+                <td class="total2 "><b>Totaux</b></td>
+                <td class="amount " style="width: 300px;"><b> {{totalDebitAmounts| number: '1.2-3' }} EUR </b></td>
+                <td class="amount" style="width: 300px; text-align: end; padding-right: 16.5%;"><b>{{totalCreditAmounts
+                        |
+                        number:
+                        '1.2-3'}} EUR </b></td>
+                <td class="amount"><b>{{totalSold | number: '1.2-3'}} EUR</b></td>
+            </tr>
+        </tbody>
+
+
+    </table>
+</div> -->

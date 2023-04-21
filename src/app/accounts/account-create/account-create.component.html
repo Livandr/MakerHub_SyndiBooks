@@ -1,0 +1,20 @@
+<h1>Nouveau compte</h1>
+<form [formGroup]="form" (ngSubmit)="createAccount()">
+
+    <div class="input-group" style="width: 800px; margin-left: auto; margin-right: auto;">
+        <span class="input-group-text">Numéro et libellé du compte</span>
+        <input type="number" aria-label="number" class="form-control " placeholder="Numéro">
+        <input type="text" aria-label="libelle" class="form-control " placeholder="libellé">
+    </div>
+    <div class="input-group" style="width: 800px; margin-left: auto; margin-right: auto;">
+        <span class="input-group-text">Solde</span>
+        <input type="number" aria-label="debit" class="form-control" placeholder="débit" formControlName="debitBalance">
+        <input type="number" aria-label="credit" class="form-control" placeholder="crédit"
+            formControlName="creditBalance">
+    </div>
+    <div class="d-grid gap-2 col-6 mx-auto">
+        <button class="btn btn-primary" type="button" routerLink="/account/account-list"
+            routerLinkActive="active">Ajouter
+        </button>
+    </div>
+</form>

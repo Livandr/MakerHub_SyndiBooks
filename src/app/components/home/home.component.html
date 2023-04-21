@@ -1,38 +1,61 @@
 <section>
-
-    <article style="height: 600px;">
+    <article class="img" *ngIf="!isLoggedIn">
+        <div class="alert alert-warning alert-dismissible fade show w-75" role="alert">
+            <strong>Hello!</strong> Afin d'accéder aux fonctionnalités, veuillez vous connecter svp!
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button> -->
+        </div>
+        <img src="/assets/Capture d’écran 2023-04-19 132341.png" class="img-fluid" alt="home"
+            style="height: 400px; margin-left: 20%;">
+    </article>
+    <article style="height: 500px;" *ngIf="isLoggedIn">
         <div style="margin-left: 10%;">
-
-            <h2 style="margin-left: 10%; color: navy; font-size: 30px; background-color: ghostwhite;">Gestion</h2>
+            <h2 style="margin-left: 10%; color: navy; font-size: 30px; background-color: ghostwhite;">Menu</h2>
             <details>
                 <summary></summary>
                 <nav class="menu" style="background-color: ghostwhite;">
-
                     <a routerLink="/home" routerLinkActive="active">
                         <b>Accueil</b>
                     </a>
                     <a href="#link">Profils</a>
                     <a routerLink="/customer" routerLinkActive="active">
                         <b>
-                            Clients
+                            Gestion Copropriétés
                         </b>
                     </a>
                     <a routerLink="/supplier" routerLinkActive="active">
                         <b>
-                            Fournisseurs
+                            Gestion Fournisseurs
                         </b>
                     </a>
-                    <a routerLink="/account" routerLinkActive="active">
+                    <a routerLink="/account/account-list" routerLinkActive="active">
                         <b>
-
+                            Gestion Comptes
+                        </b>
+                    </a>
+                    <!-- <a routerLink="/account" routerLinkActive="active">
+                        <b>
                             Comptes
                         </b>
-                    </a>
+                    </a> -->
                     <a href="#link">About</a>
                 </nav>
             </details>
         </div>
+    </article>
+    <article>
+        <div class="card text-center">
+            <div class="card-header">
+                Assistance
+            </div>
+            <div class="card-body">
+                <h5 class="card-title">Contacter l'administrateur</h5>
+                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
+                <a href="mailto:" class="btn btn-primary">Mail</a>
+            </div>
+            <div class="card-footer text-body-secondary">
+
+            </div>
+        </div>
 
     </article>
-
 </section>

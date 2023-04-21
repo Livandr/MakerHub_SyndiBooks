@@ -1,12 +1,25 @@
 <div class="container">
 
     <div class="row">
+        <div>
+            <a href="https://justice.belgium.be/fr/publications/plan_comptable_copropriete">
+                <strong>
+                    plan comptable pour les associations des copropriétaires
+                </strong>
+            </a>
+        </div>
         <div class="col-6">
-            <app-accounting [accountsCooList]="coowershipAccounts" [generalList]="accounts"
+            <button class="btn btn-primary" routerLink="/account/create" routerLinkActive="active">Créer
+                un
+                compte</button>
+            <app-accounting [accountsCooList]="coownershipAccounts" [generalList]="accounts"
                 (addedAccounts)="addToCoownershipList($event)"></app-accounting>
         </div>
         <div class="col-6">
-            <app-coownership [accountsCooList]="coowershipAccounts"></app-coownership>
+
+            <button class="btn btn-primary" routerLink="/account/create" routerLinkActive="active">Créer un
+                compte</button>
+            <app-coownership [accountsCooList]="coownershipAccounts"></app-coownership>
         </div>
     </div>
 </div>

@@ -10,7 +10,7 @@ import { AccountingService } from 'src/app/services/accounting.service';
   templateUrl: './accounting.component.html',
   styleUrls: ['./accounting.component.scss']
 })
-export class AccountingComponent implements OnInit {
+export class AccountingComponent {
 
   selected: boolean = false;
 
@@ -29,18 +29,8 @@ export class AccountingComponent implements OnInit {
 
   constructor(
 
-    private readonly _http: HttpClient,
-    private readonly _accountingService: AccountingService,
-    private readonly _activatedRouter: ActivatedRoute,
-    private _router: Router,
-    private renderer: Renderer2,
-    private el: ElementRef
+
   ) { }
-
-  ngOnInit(): void {
-    this.generalList.sort((i, j) => i.accountNumber - j.accountNumber);
-  }
-
 
 
   addAccount(account: Account) {

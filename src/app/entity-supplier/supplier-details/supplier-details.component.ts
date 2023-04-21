@@ -19,17 +19,17 @@ export class SupplierDetailsComponent implements OnInit {
   ) { }
 
   ngOnInit() {
-    const supplierId = this._activatedRouter.snapshot.params['supplierId'];
+    const id: number = this._activatedRouter.snapshot.params['id'];
 
     this.loading = true;
 
-    this._supplierService.getOne(supplierId).subscribe({
+    this._supplierService.getOne(id).subscribe({
       next: (suppl) => {
         this.supplier = suppl;
         this.loading = false;
       },
       error: (err) => {
-        this._router.navigate(['/supplier']);
+        this._router.navigate(['/supplier-management']);
       }
     })
   }

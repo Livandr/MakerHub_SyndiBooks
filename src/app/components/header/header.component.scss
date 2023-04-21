@@ -1,24 +1,38 @@
 header {
     background-color: navy;
     height: 70px;
+    text-align: center;
 }
 
-h1 {
-    animation-duration: 5s;
-    animation-name: slidein;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-
+img {
+    height: 30px;
+    width: 30px;
 }
 
-@keyframes slidein {
-    from {
-        margin-left: 100%;
-        width: 300%;
-    }
-
-    to {
-        margin-left: 0%;
-        width: 100%;
-    }
+.connexion {
+    margin-left: 70%;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    font-weight: bold;
 }
+
+
+
+// h1 {
+//     animation-duration: 2s;
+//     // animation-name: slidein;
+//     animation-iteration-count: infinite;
+//     animation-direction: alternate;
+
+// }
+
+// @keyframes slidein {
+//     from {
+//         margin-left: 100%;
+//         width: 300%;
+//     }
+
+//     to {
+//         margin-left: 0%;
+//         width: 100%;
+//     }
+// }

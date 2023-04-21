@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CoOwnership } from 'src/app/models/co-ownership';
 import { CustomerService } from 'src/app/services/customer.service';
+import { LoginService } from 'src/app/services/login.service';
 
 @Component({
   selector: 'app-header',
@@ -10,17 +11,26 @@ import { CustomerService } from 'src/app/services/customer.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+  logout() {
+    throw new Error('Method not implemented.');
+  }
   // Variable
   coownerships: CoOwnership[] = [];
   selectedCoOwnership!: any;
   acp?: string;
+  loggedIn: boolean = false;
 
   // Service
   constructor(
     private http: HttpClient,
     private readonly _customerService: CustomerService,
+    private readonly _loginService: LoginService
     // private _router: Router,
   ) { }
+
+  get isLoggedIn() {
+    return this._loginService.user ? true : false
+  }
 
 
   // INITIALISATION DE LA LISTE DES ACP 
@@ -39,7 +49,10 @@ export class HeaderComponent implements OnInit {
     // this._router.navigate(['/coownership', this.selectedCoOwnership]);
   }
 
+  logOut() {
+    this._loginService.logout();
 
+  }
 
 
 }

@@ -1,0 +1,31 @@
+<section *ngIf="!loggedIn">
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Sign In </h2>
+
+            <!-- Icon -->
+            <div class="fadeIn first">
+                <img src="/assets/Capture d’écran 2023-04-19 000142.png" id="icon" alt="User Icon" />
+            </div>
+
+            <!-- Login Form -->
+            <form [formGroup]="form" (click)="onSubmit()">
+                <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"
+                    formControlName="login">
+                <input type="password" id="password" class="fadeIn second" name="password" placeholder="mot de passe"
+                    formControlName="password">
+                <p *ngIf="notvalid" style="color: crimson; margin-top: 10px;"> Le login et/ou le mot de passe est/sont
+                    incorrect(s)</p>
+                <input type="submit" class="fadeIn fourth" value="Se connecter">
+            </form>
+        </div>
+    </div>
+</section>
+
+
+<section class="message-bienvenue" *ngIf="loggedIn">
+
+    <p> Bienvenue </p>
+    <img src="/assets/Capture d’écran 2023-04-19 004821.png" alt="bienvenue">
+</section>

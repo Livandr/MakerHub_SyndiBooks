@@ -3,15 +3,34 @@
 </div>
 
 <div *ngif="!loading">
+    <h3>Détails fournisseur</h3>
     <div>
-        <h5>{{supplier.supplierName}}</h5>
+        <span>nom : </span>
+        <h5>{{supplier.supplierName | uppercase}}</h5>
     </div>
     <div>
-        <button
-            class="ml-3 inline-flex justify-center rounded-md bg-red-800 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-red-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-yellow-600">Supprimer</button>
-        <a [routerLink]="'/supplier/details/'+ supplier.id">
-            <button type="button"
-                class="ml-3 inline-flex justify-center rounded-md bg-indigo-600 py-2 px-3 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">Éditer</button>
-        </a>
+        <table>
+            <thead>
+                <th>#</th>
+                <th>N° BCE</th>
+                <th>Nom</th>
+                <th>Adresse</th>
+                <th>Téléphone</th>
+                <th>Mail</th>
+                <th>Coordonnées bancaires</th>
+                <th></th>
+            </thead>
+            <tbody>
+                <td>{{supplier.id}}</td>
+                <td>{{supplier.bceNumber}}</td>
+                <td>{{supplier.supplierName}}</td>
+                <td>{{supplier.streetName}} {{supplier.streetNumber}} / {{supplier.streetBoxNumber}} -
+                    {{supplier.postalCode}} {{supplier.city}}</td>
+                <td>{{supplier.phone}}</td>
+                <td>{{supplier.email}}</td>
+                <td>{{supplier.bankDetailIBAN}}</td>
+                <td>{{supplier.bankDetailBIC}}</td>
+            </tbody>
+        </table>
     </div>
 </div>

@@ -8,12 +8,14 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { Page404Component } from './components/page404/page404.component';
 import { CustomerService } from './services/customer.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { SupplierService } from './services/supplier.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AccountingService } from './services/accounting.service';
 import { LoginService } from './services/login.service';
 
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -25,6 +27,7 @@ import { LoginService } from './services/login.service';
     HeaderComponent,
     FooterComponent,
     Page404Component,
+    LoginComponent
 
 
 
@@ -37,13 +40,16 @@ import { LoginService } from './services/login.service';
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
+    ReactiveFormsModule,
 
   ],
   providers: [
     LoginService,
     AccountingService,
     CustomerService,
-    SupplierService
+    SupplierService,
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+
   ],
   bootstrap: [AppComponent]
 })

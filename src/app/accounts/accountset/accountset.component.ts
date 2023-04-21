@@ -10,7 +10,7 @@ import { AccountingService } from 'src/app/services/accounting.service';
 })
 export class AccountsetComponent implements OnInit {
   accounts: Account[] = [];
-  coowershipAccounts: Account[] = [];
+  coownershipAccounts: Account[] = [];
 
   constructor(
     private readonly _accountingService: AccountingService,
@@ -23,13 +23,14 @@ export class AccountsetComponent implements OnInit {
     this._http.get<Account[]>("http://localhost:8080/account/all").subscribe(
       data => {
         this.accounts = data;
+        this.accounts.sort((a, b) => a.accountNumber - b.accountNumber)
       }
     );
   }
 
   addToCoownershipList(accounts: Account) {
     this.accounts.sort((a, b) => a.accountNumber - b.accountNumber);
-    this.coowershipAccounts.push(accounts)
+    this.coownershipAccounts.push(accounts);
   }
 
 

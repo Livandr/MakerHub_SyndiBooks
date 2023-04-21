@@ -30,10 +30,20 @@ export class CustomerListComponent implements OnInit {
   ngOnInit(): void {
     this.isLoading = true;
 
+    this._customerService.getAll().subscribe({
+      next: (coownerships) => {
+        this.coownerships = coownerships;
+        this.isLoading = false;
+
+      }
+    })
+
     this.customerSub = this._customerService.$customerChanged.subscribe(() => this.loadCustomers())
   }
 
-  loadCustomers() {
+  loadCustomers(): void {
+    this.isLoading = true;
+
     this._customerService.getAll().subscribe({
       next: data => this.coownerships = data,
       error: console.error

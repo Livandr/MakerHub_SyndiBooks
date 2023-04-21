@@ -6,104 +6,77 @@
         </h1>
     </div>
 </header>
+
 <div>
-
-</div>
-<div>
-    <section>
-        <!-- <h3
-            style=" color: navy; font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif; font-weight: bold; ">
-            Rechercher une copropriété
-        </h3> -->
-        <p>
-            <!-- <a class="btn btn-primary" data-bs-toggle="collapse" href="#collapseExample" role="button" aria-expanded="false" aria-controls="collapseExample">
-              Link with href
-            </a> -->
-            <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
-                data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-                Sélection copropriété
-            </button>
-        </p>
-        <div class="collapse" id="collapseExample">
-            <div class="card card-body">
-
-                <div class="input-group mb-3 w-75">
-                    <label for="acp">Rechercher :</label>
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control" placeholder="saisir le nom de l'ACP"
-                            aria-label="Recipient's username" aria-describedby="button-addon2" [(ngModel)]="acp">
-                        <button class="btn btn-outline-primary" type="button" id="button-addon2" (click)="searchACP()">
-                            <img src="/assets/search.svg" alt="">
-                        </button>
-                    </div>
-                    <!-- <input type="text" id="acp" [(ngModel)]="acp">
-                    <button (click)="searchACP()">Rechercher</button> -->
-                    <!-- <label class="input-group-text" for="inputGroupSelect01">copropriété</label> -->
-                    <select class="form-select form-select-lg mb-6 w-30" aria-label=".form-select-lg example"
-                        [(value)]="selectedCoOwnership" id="acp" style="width: 50px;">
-
-                        <option *ngFor="let coownership of coownerships" [value]="coownership.coOName">
-                            {{coownership.id}} > {{coownership.coOName}}
-                        </option>
-
-                    </select>
-                    <button type="button" class="btn btn-outline-primary" (click)="goToThisOwnership()"
-                        style="height: 48px;">Sélectionner</button>
-                </div>
-                <div style="background-color: navy; color: ghostwhite; text-align: center;">
-                    <p> ACP {{ acp | uppercase }}</p>
-                </div>
-            </div>
-        </div>
+    <section class="connexion">
+        <button class="btn btn-light" style="width: 200px;" routerLink="/login" routerLinkActive="active"
+            *ngIf="!isLoggedIn">
+            SE CONNECTER
+            <img src="/assets/login.png" alt="sign-in">
+        </button>
+        <button type="button" class="btn btn-light" *ngIf="isLoggedIn" (click)="logOut()">
+            SE DECONNECTER
+            <img src="/assets/switch.png" alt="sign-out">
+        </button>
     </section>
-    <section>
-
+    <section *ngIf="isLoggedIn">
         <ul class="nav nav-tabs">
-            <!-- <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Active</a>
-            </li> -->
             <li class="nav-item">
-                <a class="nav-link" routerLink="/home" routerLinkActive="active">Gestion</a>
+                <a class="nav-link" routerLink="/home" routerLinkActive="active">Accueil</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" routerLink="/account/" routerLinkActive="active">Dashboard</a>
+                <a class="nav-link" routerLink="/account" routerLinkActive="active">Dashboard</a>
             </li>
-            <!-- <li class="nav-item">
-                <a class="nav-link" routerLink="/login" routerLinkActive="active">Login</a>
-            </li> -->
+            <li class="nav-item">
+                <a class="nav-link disabled"> Factures </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link"
+                    href="https://www.copropriete-belgique.com/accueil/categories/comptabilit%C3%A9">News
+                    copropriété</a>
+            </li>
             <li class="nav-item">
                 <article>
-                    <div class="dropdown">
-                        <button type="button" class="btn btn-outline-primary dropdown-toggle" data-bs-toggle="dropdown"
-                            aria-expanded="false" data-bs-auto-close="outside">
-                            Connexion
+                    <p>
+                        <button class="btn btn-outline-primary" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                            Sélection copropriété
                         </button>
-                        <form class="dropdown-menu p-4 " style="width: 500px;">
-                            <div class="mb-3">
-                                <label for="exampleDropdownFormEmail2" class="form-label">Login</label>
-                                <input type="email" class="form-control" id="exampleDropdownFormEmail2"
-                                    placeholder="email@example.com">
-                            </div>
-                            <div class="mb-3">
-                                <label for="exampleDropdownFormPassword2" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="exampleDropdownFormPassword2"
-                                    placeholder="Password">
-                            </div>
-                            <div class="mb-3">
-                                <div class="form-check">
-                                    <input type="checkbox" class="form-check-input" id="dropdownCheck2">
-                                    <label class="form-check-label" for="dropdownCheck2">
-                                        Remember me
-                                    </label>
+                    </p>
+                    <div class="collapse" id="collapseExample">
+                        <div class="card card-body">
+                            <div class="input-group mb-3 w-75">
+                                <label for="acp">Rechercher :</label>
+                                <div class="input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="saisir le nom de l'ACP"
+                                        aria-label="Recipient's username" aria-describedby="button-addon2"
+                                        [(ngModel)]="acp">
+                                    <button class="btn btn-outline-primary" type="button" id="button-addon2"
+                                        (click)="searchACP()">
+                                        <img src="/assets/search.svg" alt="">
+                                    </button>
                                 </div>
+                                <!-- <input type="text" id="acp" [(ngModel)]="acp">
+                                <button (click)="searchACP()">Rechercher</button> -->
+                                <!-- <label class="input-group-text" for="inputGroupSelect01">copropriété</label> -->
+                                <select class="form-select form-select-lg mb-6 w-30"
+                                    aria-label=".form-select-lg example" [(value)]="selectedCoOwnership" id="acp"
+                                    style="width: 50px;">
+
+                                    <option *ngFor="let coownership of coownerships" [value]="coownership.coOName">
+                                        {{coownership.id}} > {{coownership.coOName}}
+                                    </option>
+
+                                </select>
+                                <button type="button" class="btn btn-outline-primary" (click)="goToThisOwnership()"
+                                    style="height: 48px;">Sélectionner</button>
                             </div>
-                            <button type="submit" class="btn btn-primary">Sign in</button>
-                        </form>
+                        </div>
                     </div>
                 </article>
             </li>
             <!-- <li class="nav-item">
-                <a class="nav-link">Disabled</a>
+                <a class="nav-link" routerLink="/home" routerLinkActive="active">Gestion</a>
             </li> -->
         </ul>
     </section>
